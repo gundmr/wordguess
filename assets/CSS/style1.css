@@ -1,15 +1,26 @@
 
+:root {
+    --bg-image: url(images/games-1.jpg) 70%;
+}
+
 body {
 	position: relative;
-	background-color: #282828;
+	background: var(--bg-image);
 	font-family: "Courier New", Courier, monospace;
-	color: #33FF33;
+    color: #33ff33;
 }
 
 #title {
 	text-align: center;
 	margin-top: 20px;
 	margin-bottom: 30px;
+}
+
+.blinking {
+    text-align: center;
+	margin-top: 20px;
+    margin-bottom: 30px;
+    font-size: 20px;
 }
 
 #instruction, #alerts {
