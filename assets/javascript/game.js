@@ -65,38 +65,52 @@ function checkLetters (letter) { //function used to compare guessed letter again
 }
 
 function completeRound () {
+    document.getElementById("errorCount").innerHTML = numGuesses; //show # of guesses
+    document.getElementById("word-blanks").innerHTML = blankAndSuccesses.join(" "); //prints guesses and blanks to page
+    document.getElementById("guessedletters").innerHTML = wrongGuesses.join(" "); //prints wrong letters to page
 
-
+    if(lettersInChosenWord.toString() === blankAndSuccesses.toString()) { //letter guessed = computer choice
+        winCounter++; //increase wins
+        alert("You Win!");
+        document.getElementById("winCount").innerHTML = winCounter;
+        startGame(); //restart game
+    }
+    else if (numGuesses === 0) { //When allowed guessed = 0, you lose game
+        lossCounter++; //loss increase
+        alert("You Lose");
+        document.getElementById("lossCount").innerHTML = lossCounter; //print loss to screen
+        startGame(); //restart game
+    }
 }
 
 
 
-
-    document.onkeyup = function (event) {
-    enteredGuesses.push(event.key)
-    viewedGuesses.textContent = enteredGuesses.join(); 
+// DELETE
+//     document.onkeyup = function (event) {
+//     enteredGuesses.push(event.key)
+//     viewedGuesses.textContent = enteredGuesses.join(); 
     
-    console.log('compChoice?', compChoice)
-    console.log(compChoice === event.key, compChoice, event.key)
+//     console.log('compChoice?', compChoice)
+//     console.log(compChoice === event.key, compChoice, event.key)
 
-    if (compChoice === event.key) { //if wins = guessed letter
-        console.log('winning?', win, compChoice)
-        win++; 
-        scoredWins.textContent = win; //increase wins on score board (when wins = guessed letter)
-        guessAttempts=0;
-        enteredGuesses = [];
-        compChoice = letterRand(); //after winning - generate new random letter (start new game)
-    } 
-    else if (guessAttempts == maxGuesses) { //if entered guess = 10
-        //compChoice !== event.key;
-        losses++;
-        scoredLost.textContent = losses; // increase lost on score board
-        guessAttempts=0; // reset guess attempts
-        enteredGuesses = []; // clear letters guessed
-    }
-    else {
-        guessAttempts++; 
-        wrongLetters.textContent = guessAttempts; // if previous conditions not met, increase guess attempts per guess
-    }
+//     if (compChoice === event.key) { //if wins = guessed letter
+//         console.log('winning?', win, compChoice)
+//         win++; 
+//         scoredWins.textContent = win; //increase wins on score board (when wins = guessed letter)
+//         guessAttempts=0;
+//         enteredGuesses = [];
+//         compChoice = letterRand(); //after winning - generate new random letter (start new game)
+//     } 
+//     else if (guessAttempts == maxGuesses) { //if entered guess = 10
+//         //compChoice !== event.key;
+//         losses++;
+//         scoredLost.textContent = losses; // increase lost on score board
+//         guessAttempts=0; // reset guess attempts
+//         enteredGuesses = []; // clear letters guessed
+//     }
+//     else {
+//         guessAttempts++; 
+//         wrongLetters.textContent = guessAttempts; // if previous conditions not met, increase guess attempts per guess
+//     }
 
-}
+// }
