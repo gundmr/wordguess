@@ -11,10 +11,6 @@
 </head>
 <body>
     <div id="main-content">
-        <!--<div id="title-div">
-            <img id="game-title" src="./assets/images/hangman_title.png" alt="Hangman">
-            <div id="helper">Press any key to get started!</div>
-        </div>-->
         <div id="title">
             <pre><p> _    _                                                     </p></pre>
             <pre><p>| |  | |                                                    </p></pre>
@@ -42,11 +38,15 @@
         </div>
 
         <div id="game-div" class="panel">
+            
             <div id="word-display">
                 <p id="word-display-letters"></p>
             </div>
 
             <div id="general-display">
+                <pre><p>+--------------------Word-to-Guess-------------------+</p></pre>
+                <pre><p>| <h3 id="word-blanks">_ _ _ _ _ _ _ _ _ </h3>                                                </span> |</p></pre>
+                <pre><p>|
                 <pre><p>+-------------------Guessed-Letters-------------------+</p></pre>
                 <pre><p>| <span id="guessedletters">                                                   </span> |</p></pre>
                 <pre><p>+------------------------Stats------------------------+</p></pre>

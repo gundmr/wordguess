@@ -68,7 +68,9 @@ function letterRand() {
         // 3) ELSE if no --> no match = add letter and allow another guess
         // 4) ELSE if yes --> no match = increase losses and start another game
         // Next, we give JavaScript a function to execute when onkeyup event fires.
-document.onkeyup = function (event) {
+
+
+    document.onkeyup = function (event) {
     enteredGuesses.push(event.key)
     viewedGuesses.textContent = enteredGuesses.join(); 
     
