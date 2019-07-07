@@ -2,18 +2,18 @@
 // =======================================================================
 
 // Word options
-var wordList = ["sonic", "mario", "tetris", "zelda", "spores"];
+var wordsList = ["sonic", "mario", "tetris", "zelda", "spores"];
 
 // Score Counters
-var winCounter = 0 //win 
-var lossCounter = 0 //losses
-var numGuesses = 10 // maxGuesses
+var winCounter = 0; //win 
+var lossCounter = 0; //losses
+var numGuesses = 9; // maxGuesses
 
 // Guess Variables
 var lettersGuessed = "";
 var blankAndSuccesses = []; //hols mix of blank and solved letters (a,_, b)
-var wrongGuesses = [] //wrong guessed
-var numBlank = 0  //'guessAttemps' will be the number of blanks we show based on solution
+var wrongGuesses = []; //wrong guessed
+var numBlanks = 0;  //'guessAttemps' will be the number of blanks we show based on solution
 
 //Computer Selection
 var chosenWord = "";
@@ -28,6 +28,7 @@ function startGame() {
     chosenWord = wordsList[Math.floor(Math.random() * wordsList.length)]; //randomly select "hidden" word for user to guess
     lettersInChosenWord = chosenWord.split(""); //use split to break apart letters in word
     numBlanks = lettersInChosenWord.length; //count letter in "hidden" word to guess
+    console.log(chosenWord);
 
     // reset guessing arrays:
     blankAndSuccesses = [];
@@ -45,18 +46,18 @@ function startGame() {
 
 function checkLetters (letter) { //function used to compare guessed letter against computer choosen word/letter string
     var letterInWord = false; //using a boolean (t/f) to determine if letter is in computer array
-    for (var i = 0; i < numBlank; i++) {
+    for (var i = 0; i < numBlanks; i++) {
         if(chosenWord[i] === letter) {
             letterInWord = true;
         }
     }
     if(letterInWord) { //determine if letter exists - where exactly in word
-        for(var j = 0; j < numBlank; j++) { //looping through comp generated word
-            if(chosenWord[j] = letter){ //populates blankAndSccesses with every instance of letter
+        for(var j = 0; j < numBlanks; j++) { //looping through comp generated word
+            if(chosenWord[j] === letter){ //populates blankAndSccesses with every instance of letter
                 blankAndSuccesses[j] = letter; //blank space equal to correct letter when there is a match
             }
         }
-        console.log(blankAndSuccesses);
+        console.log('check letters', blankAndSuccesses);
     }
     else{
         wrongGuesses.push(letter); //letter does not exist and moves to wrong guess list
@@ -65,6 +66,8 @@ function checkLetters (letter) { //function used to compare guessed letter again
 }
 
 function completeRound () {
+console.log("winCount:"+ winCounter + "|lossCounter"+lossCounter+"|numGuesses:"+numGuesses);
+
     document.getElementById("errorCount").innerHTML = numGuesses; //show # of guesses
     document.getElementById("word-blanks").innerHTML = blankAndSuccesses.join(" "); //prints guesses and blanks to page
     document.getElementById("guessedletters").innerHTML = wrongGuesses.join(" "); //prints wrong letters to page
@@ -88,7 +91,7 @@ function completeRound () {
 startGame();  //start game - call function
 
 document.onkeyup = function(event) { //captures key clicks
-    letterGuessed = String.fromCharCode(event.which).toLowerCase(); //converts key clicks to lowercase
+    lettersGuessed = String.fromCharCode(event.which).toLowerCase(); //converts key clicks to lowercase
     checkLetters(lettersGuessed); //check letters for correct guesses
     completeRound(); //end round when all blanks or allowed guesses have been complete
 };
