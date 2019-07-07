@@ -20,7 +20,7 @@ var chosenWord = "";
 var lettersInChosenWord = [];
 
 
-// FUNCTIONS
+// FUNCTIONS:
 // ========================================================================
 
 function startGame() {
@@ -35,48 +35,41 @@ function startGame() {
     for (var i = 0; i < numBlanks; i++) {
         blankAndSuccesses.push("_");
     }
+
+    console.log('count blanks', blankAndSuccesses);
     document.getElementById("errorCount").innerHTML = numGuesses; //show # of guesses
     document.getElementById("word-blanks").innerHTML = blankAndSuccesses.join(" "); //prints guesses and blanks to page
     document.getElementById("guessedletters").innerHTML = wrongGuesses.join(" "); //prints wrong letters to page
 }
 
 
-// DELETE
-// // function for computer to choose letter
-// let compChoice = letterRand();
-// console.log(compChoice)
-// // console.log(index) // use to this console.log to confirm index
+function checkLetters (letter) { //function used to compare guessed letter against computer choosen word/letter string
+    var letterInWord = false; //using a boolean (t/f) to determine if letter is in computer array
+    for (var i = 0; i < numBlank; i++) {
+        if(chosenWord[i] === letter) {
+            letterInWord = true;
+        }
+    }
+    if(letterInWord) { //determine if letter exists - where exactly in word
+        for(var j = 0; j < numBlank; j++) { //looping through comp generated word
+            if(chosenWord[j] = letter){ //populates blankAndSccesses with every instance of letter
+                blankAndSuccesses[j] = letter; //blank space equal to correct letter when there is a match
+            }
+        }
+        console.log(blankAndSuccesses);
+    }
+    else{
+        wrongGuesses.push(letter); //letter does not exist and moves to wrong guess list
+        numGuesses--; //subtract from guess
+    }
+}
+
+function completeRound () {
 
 
-// //Elements from HTML
-// let viewedGuesses = document.getElementById("guessedletters");
-// const scoredWins = document.getElementById("winCount");
-// const scoredLost = document.getElementById("lossCount");
-// const wrongLetters = document.getElementById("errorCount");
+}
 
-// scoredWins.textContent = win; // Will show user wins=0 at start
-// scoredLost.textContent = losses; // Will show user lost=0 at start
-// wrongLetters.textContent = guessAttempts; // Will show user guesses=0 at start
 
-// // function to randomize a letter
-// function letterRand() {
-//     // function for computer to choose letter
-//     var index = [Math.floor(Math.random() * 26)];
-//     return choices[index]
-//     console.log(compChoice)
-//     console.log(index) //confirm index
-// }
-
-// // Function CAPTURES KEY PRESSED BY USER
-// // take key that's press - push it to entered guess array (use question game as example)
-
-//     //pseudo code for IF statments:
-//         // Function MARKS LETTERS, WINS, LOST
-//         // 1) if guessed amout is greater than allowed guesses
-//         // 2) ELSE if no --> match = increase wins and start game over
-//         // 3) ELSE if no --> no match = add letter and allow another guess
-//         // 4) ELSE if yes --> no match = increase losses and start another game
-//         // Next, we give JavaScript a function to execute when onkeyup event fires.
 
 
     document.onkeyup = function (event) {
