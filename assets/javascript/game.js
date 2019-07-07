@@ -1,37 +1,27 @@
 // VARIABLES:
-var win = 0
-var losses = 0
-var maxGuesses = 10
-var guessAttempts = 0 
-var enteredGuesses = []
+// =======================================================================
 
-var choices = ["a",
-    "b",
-    "c",
-    "d",
-    "e",
-    "f",
-    "g",
-    "h",
-    "i",
-    "j",
-    "k",
-    "l",
-    "m",
-    "n",
-    "o",
-    "p",
-    "q",
-    "r",
-    "s",
-    "t",
-    "u",
-    "v",
-    "w",
-    "x",
-    "y",
-    "z"]
+// Word options
+var wordList = ["sonic", "mario", "tetris", "zelda", "spores"];
 
+// Score Counters
+var winCounter = 0 //win 
+var lossCounter = 0 //losses
+var numGuesses = 10 // maxGuesses
+
+// Guess Variables
+var lettersGuessed = "";
+var blankAndSuccesses = []; //hols mix of blank and solved letters (a,_, b)
+var wrongGuesses = [] //wrong guessed
+var numBlank = 0  //'guessAttemps' will be the number of blanks we show based on solution
+
+//Computer Selection
+var chosenWord = "";
+var lettersInChosenWord = [];
+
+
+// FUNCTIONS
+// ========================================================================
 
 // function for computer to choose letter
 let compChoice = letterRand();
