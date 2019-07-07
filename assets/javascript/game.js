@@ -83,34 +83,12 @@ function completeRound () {
     }
 }
 
+// CALL FUNCTION - RUN 
+// ====================================================
+startGame();  //start game - call function
 
-
-// DELETE
-//     document.onkeyup = function (event) {
-//     enteredGuesses.push(event.key)
-//     viewedGuesses.textContent = enteredGuesses.join(); 
-    
-//     console.log('compChoice?', compChoice)
-//     console.log(compChoice === event.key, compChoice, event.key)
-
-//     if (compChoice === event.key) { //if wins = guessed letter
-//         console.log('winning?', win, compChoice)
-//         win++; 
-//         scoredWins.textContent = win; //increase wins on score board (when wins = guessed letter)
-//         guessAttempts=0;
-//         enteredGuesses = [];
-//         compChoice = letterRand(); //after winning - generate new random letter (start new game)
-//     } 
-//     else if (guessAttempts == maxGuesses) { //if entered guess = 10
-//         //compChoice !== event.key;
-//         losses++;
-//         scoredLost.textContent = losses; // increase lost on score board
-//         guessAttempts=0; // reset guess attempts
-//         enteredGuesses = []; // clear letters guessed
-//     }
-//     else {
-//         guessAttempts++; 
-//         wrongLetters.textContent = guessAttempts; // if previous conditions not met, increase guess attempts per guess
-//     }
-
-// }
+document.onkeyup = function(event) { //captures key clicks
+    letterGuessed = String.fromCharCode(event.which).toLowerCase(); //converts key clicks to lowercase
+    checkLetters(lettersGuessed); //check letters for correct guesses
+    completeRound(); //end round when all blanks or allowed guesses have been complete
+};
