@@ -23,41 +23,60 @@ var lettersInChosenWord = [];
 // FUNCTIONS
 // ========================================================================
 
-// function for computer to choose letter
-let compChoice = letterRand();
-console.log(compChoice)
-// console.log(index) // use to this console.log to confirm index
+function startGame() {
+    numGuesses = 9; //reset letters guessed 
+    chosenWord = wordsList[Math.floor(Math.random() * wordsList.length)]; //randomly select "hidden" word for user to guess
+    lettersInChosenWord = chosenWord.split(""); //use split to break apart letters in word
+    numBlanks = lettersInChosenWord.length; //count letter in "hidden" word to guess
 
-
-//Elements from HTML
-let viewedGuesses = document.getElementById("guessedletters");
-const scoredWins = document.getElementById("winCount");
-const scoredLost = document.getElementById("lossCount");
-const wrongLetters = document.getElementById("errorCount");
-
-scoredWins.textContent = win; // Will show user wins=0 at start
-scoredLost.textContent = losses; // Will show user lost=0 at start
-wrongLetters.textContent = guessAttempts; // Will show user guesses=0 at start
-
-// function to randomize a letter
-function letterRand() {
-    // function for computer to choose letter
-    var index = [Math.floor(Math.random() * 26)];
-    return choices[index]
-    console.log(compChoice)
-    console.log(index) //confirm index
+    // reset guessing arrays:
+    blankAndSuccesses = [];
+    wrongGuesses = [];
+    for (var i = 0; i < numBlanks; i++) {
+        blankAndSuccesses.push("_");
+    }
+    document.getElementById("errorCount").innerHTML = numGuesses; //show # of guesses
+    document.getElementById("word-blanks").innerHTML = blankAndSuccesses.join(" "); //prints guesses and blanks to page
+    document.getElementById("guessedletters").innerHTML = wrongGuesses.join(" "); //prints wrong letters to page
 }
 
-// Function CAPTURES KEY PRESSED BY USER
-// take key that's press - push it to entered guess array (use question game as example)
 
-    //pseudo code for IF statments:
-        // Function MARKS LETTERS, WINS, LOST
-        // 1) if guessed amout is greater than allowed guesses
-        // 2) ELSE if no --> match = increase wins and start game over
-        // 3) ELSE if no --> no match = add letter and allow another guess
-        // 4) ELSE if yes --> no match = increase losses and start another game
-        // Next, we give JavaScript a function to execute when onkeyup event fires.
+// DELETE
+// // function for computer to choose letter
+// let compChoice = letterRand();
+// console.log(compChoice)
+// // console.log(index) // use to this console.log to confirm index
+
+
+// //Elements from HTML
+// let viewedGuesses = document.getElementById("guessedletters");
+// const scoredWins = document.getElementById("winCount");
+// const scoredLost = document.getElementById("lossCount");
+// const wrongLetters = document.getElementById("errorCount");
+
+// scoredWins.textContent = win; // Will show user wins=0 at start
+// scoredLost.textContent = losses; // Will show user lost=0 at start
+// wrongLetters.textContent = guessAttempts; // Will show user guesses=0 at start
+
+// // function to randomize a letter
+// function letterRand() {
+//     // function for computer to choose letter
+//     var index = [Math.floor(Math.random() * 26)];
+//     return choices[index]
+//     console.log(compChoice)
+//     console.log(index) //confirm index
+// }
+
+// // Function CAPTURES KEY PRESSED BY USER
+// // take key that's press - push it to entered guess array (use question game as example)
+
+//     //pseudo code for IF statments:
+//         // Function MARKS LETTERS, WINS, LOST
+//         // 1) if guessed amout is greater than allowed guesses
+//         // 2) ELSE if no --> match = increase wins and start game over
+//         // 3) ELSE if no --> no match = add letter and allow another guess
+//         // 4) ELSE if yes --> no match = increase losses and start another game
+//         // Next, we give JavaScript a function to execute when onkeyup event fires.
 
 
     document.onkeyup = function (event) {
