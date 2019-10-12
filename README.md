@@ -1,6 +1,3 @@
-# wordguess-gundmr.github.io
-word guessing game using js
-
 # Wordguess Game
 * Hangman game
 * Tracks letters guessed
